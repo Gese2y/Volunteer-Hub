@@ -1,0 +1,227 @@
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Apply</h1> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="apply">
+                <app-application-form [service]="service"></app-application-form>
+            </div>
+            <div *ngIf="!apply">
+
+                <app-organization-request ></app-organization-request>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<body>
+
+
+    <main role="main">
+      <section class="jumbotron text-center" style="height: 400px;">
+        <div class="container d-flex align-items-center justify-content-center" style="height: 100%; background-size: cover; background-repeat: no-repeat;" [style.background-image]="'url(' + imageUrl + ')'">
+          <div class="hihglited-text"><br><br>
+            <h2  class="lead " style="color: black;text-transform: uppercase; font-weight: bold; line-height: 1.5em;">
+              Are You Ready To Volunteer!
+            </h2>
+            
+             <p>
+              <a  class="btn btn-danger" style="text-transform: uppercase;" (click)="goToPersonComponent()">Become Volunteer</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+              <a  class="btn btn-warning my-2" style="text-transform: uppercase;" (click)="goToorgComponent()">Get Volunteer</a>
+            </p>
+          </div>
+        </div>
+      </section>
+  <br><br>
+  <!-- <button (click)="goToPersonComponent()">Go to Person Component</button> -->
+  
+  
+  <!-- Corrected app.component.html -->
+  <!-- <p-fieldset legend="Header" [toggleable]="true">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+  </p-fieldset> -->
+  
+  <section class="jumbotron text-center" style="width: 80%; text-align: center; display: flex; justify-content: center;">
+    <div>
+      <p class="lead outlined-text" style="color: black; font-weight: bold; line-height: 1.5em; margin-left: 100px;">
+        The Volunteer Hub website for the Ethiopian Red Cross Society aims to 
+        create a centralized platform where volunteers can find opportunities, register, and 
+        engage in various humanitarian activities. The website will serve as a dynamic portal, providing information, resources, and support to volunteers, 
+        enabling them to contribute effectively to the society's mission. 
+      </p>
+    </div>
+  </section>
+  
+  
+      <div class="album py-5 bg-light">
+        <div class="container">
+  
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <div class="card-img-top d-flex align-items-center justify-content-center" 
+                style="height: 225px; width: 100%; display: block; background-color: red; background-size: cover;"
+                [style.background-image]="'url(' + imageUrl2 + ')'">
+             <p (click)="clockvolu()" class="lead text-center hihglited-text" style="color: white; font-weight: bold; line-height: 1.5em;">
+               Emergency Relief Services
+             </p> 
+           </div>
+           
+                
+                <div class="card-body">
+                  <p class="card-text">This includes providing shelter, food, and medical assistance to individuals and communities affected by natural disasters, conflicts, and other emergencies.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-danger"
+                      data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="popup('apply','Emergency Relief Services')">Apply</button>
+                      <button type="button" class="btn btn-sm btn-outline-primary" 
+                      data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="popup('request','Emergency Relief Services')">Request</button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+               
+                <div class="card-img-top d-flex align-items-center justify-content-center" 
+                style="height: 225px; width: 100%; display: block; background-color: red; background-size: cover;"
+                [style.background-image]="'url(' + imageUrl3 + ')'">
+             <p class="lead hihglited-text highlighted-button text-center" style="color:white; font-weight: bold; line-height: 1.5em;font-size: 2.5em;">
+               Blood Services
+             </p> 
+           </div>
+           
+  
+                
+                <div class="card-body">
+                  <p class="card-text">Managing blood donation programs, where they collect, test, and 
+                    distribute blood and blood products to 
+                    hospitals and medical facilities.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-danger">Apply</button>
+                     <button type="button" class="btn btn-sm btn-outline-primary">Request</button>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+              
+                <div class="card-img-top d-flex align-items-center justify-content-center" 
+                style="height: 225px; width: 100%; display: block; background-color: red; background-size: cover;"
+                [style.background-image]="'url(' + imageUrl5 + ')'">
+             <p class="lead hihglited-text highlighted-button text-center" style="color:white; font-weight: bold; line-height: 1.5em;font-size: 2.5em;">
+              First Aid and CPR Training
+             </p> 
+           </div>
+                <div class="card-body">
+                  <p class="card-text"> Offering courses and certifications in first aid, CPR (Cardiopulmonary Resuscitation), 
+                    and other lifesaving techniques to individuals and organizations.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-danger">Apply</button>
+                     <button type="button" class="btn btn-sm btn-outline-primary">Request</button>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+               
+                <div class="card-img-top d-flex align-items-center justify-content-center" 
+                style="height: 225px; width: 100%; display: block; background-color: red; background-size: cover;"
+                [style.background-image]="'url(' + imageUrl2 + ')'">
+             <p class="lead hihglited-text highlighted-button text-center" style="color:white; font-weight: bold; line-height: 1.5em;font-size: 2.5em;">
+              Disaster Preparedness Education
+             </p> 
+           </div>
+                <div class="card-body">
+                  <p class="card-text">Providing educational resources and training programs to help 
+                    communities prepare for and respond to disasters effectively</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-danger">Apply</button>
+                     <button type="button" class="btn btn-sm btn-outline-primary">Request</button>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <div class="card-img-top d-flex align-items-center justify-content-center" 
+                style="height: 225px; width: 100%; display: block; background-color: red; background-size: cover;"
+                [style.background-image]="'url(' + imageUrl7 + ')'">
+             <p class="lead hihglited-text highlighted-button text-center" style="color:white; font-weight: bold; line-height: 1.5em;font-size: 2.5em;">
+              Volunteer Opportunities
+             </p> 
+           </div>
+                
+                <div class="card-body">
+                  <p class="card-text">Offering training and support for volunteers who want to get 
+                    involved in various aspects of their work.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-danger">Apply</button>
+                     <button type="button" class="btn btn-sm btn-outline-primary">Request</button>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+             
+                <div class="card-img-top d-flex align-items-center justify-content-center" 
+                style="height: 225px; width: 100%; display: block; background-color: red; background-size: cover;"
+                [style.background-image]="'url(' + imageUrl9 + ')'">
+             <p class="lead hihglited-text highlighted-button text-center" style="color:white; font-weight: bold; line-height: 1.5em;font-size: 2.5em;">
+              Health and Safety Products
+             </p> 
+           </div>
+                <div class="card-body">
+                  <p class="card-text">Selling first aid kits, emergency preparedness supplies, and other health and 
+                    safety products to individuals and organizations.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-danger">Apply</button>
+                     <button type="button" class="btn btn-sm btn-outline-primary">Request</button>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+    </main>
+  
+  

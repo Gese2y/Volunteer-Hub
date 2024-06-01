@@ -1,0 +1,281 @@
+<div *ngIf="isUser">
+  <div class="notification" >
+    <div class="notification-content">
+      <p class="notification-title"> You are not registered.</p>
+      <p class="notification-message">
+        If you have already registered, you can
+        <a href="http://redc.xokait.com.et/en-us/login">Login</a>. If you are not registered, you can
+        <a href="http://redc.xokait.com.et/en-us/register">Register</a> .
+      </p>
+      <!-- <button class="close" (click)="closeNotification()">×</button> -->
+    </div>
+  </div>
+  
+  
+  
+
+  
+</div>
+<div *ngIf="!isUser">
+
+  <mat-horizontal-stepper #stepper>
+    <!-- First Step -->
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Rights and Benefits of a Volunteer</ng-template>
+      <div class="main-content" style="margin-left: 200px; margin-right: 200px;">
+        <div class="container-fluid">
+            <div class="rights-benefits">
+                <h2>Rights and Benefits of a Volunteer</h2>
+                <p>
+                    Any person, who is willing to accept and translate it to deeds the fundamental principles of the society may become a volunteer of the society without discrimination related to race, color, nationality, sex, religion, political opinion or any other status. A volunteer may:
+                </p>
+                <ul>
+                    <li>Be eligible for election in the governance of the society at all levels</li>
+                    <li>Volunteering connects you to others.</li>
+                    <li>Volunteering is good for your mind and body.</li>
+                    <li>Volunteering can advance your career.</li>
+                    <li>Volunteering brings fun and fulfillment to your life.</li>
+                </ul>
+                <form [formGroup]="rights">
+                    <div class="form-check">
+                        <input type="checkbox" formControlName="agreeRights" class="form-check-input" id="agreeRights" required>
+                        <label class="form-check-label" for="agreeRights">I Read Rights and Benefits</label>
+                    </div>
+                </form>
+                <button type="button" mat-button matStepperNext class="btn btn-success" [disabled]="rights.invalid">Next</button>
+            </div>
+        </div>
+    </div>
+    
+    </mat-step>
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Personal Info</ng-template>
+      <div class="main-content">
+        <!-- Your form content here -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <p class="card-category">Complete your Info</p>
+                        </div>
+                        <div class="card-body">
+                          <form (ngSubmit)="onSubmit()" #form="ngForm">
+                            <div class="row">
+                              <div class="col-md-5">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>First Name</mat-label>
+                                  <input matInput [(ngModel)]="Volunteer.applicant_First_Name_EN" name="firstName" required>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Middle Name</mat-label>
+                                  <input matInput placeholder="Middle Name" [(ngModel)]="Volunteer.applicant_Middle_Name_En" name="middleName" required>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Middle Name</mat-label>
+                                  <input matInput placeholder="Last Name" [(ngModel)]="Volunteer.applicant_Last_Name_EN" name="lastName" required>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4">
+                                <!-- <span>Date Of Birth</span> -->
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Date Of Birth</mat-label>
+                                  <input matInput [matDatepicker]="picker1" placeholder="Date" [(ngModel)]="Volunteer.created_Date" name="dob" required>
+                                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                                <span *ngIf="doblimit" class="dob-warning">You must be at least 12 years old</span>
+                              </div>
+                              <div class="col-md-5">
+                                <span>Sex:</span>
+                                <br>
+                                <mat-radio-group [(ngModel)]="Volunteer.gender" name="gender">
+                                  <mat-radio-button value="Male">Male</mat-radio-button>
+                                  <mat-radio-button value="Female">Female</mat-radio-button>
+                                </mat-radio-group>
+                              </div>
+                              <div class="col-md-3">
+                                <span>Marital Status:</span><br>
+                                <mat-radio-group [(ngModel)]="Volunteer.tin" name="tin">
+                                  <mat-radio-button value="Single">Single</mat-radio-button>
+                                  <mat-radio-button value="Married">Married</mat-radio-button>
+                                </mat-radio-group>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Nationality</mat-label>
+                                  <mat-select placeholder="Select a country" [(ngModel)]="Volunteer.nationality" name="nationality" (selectionChange)="onSelectCountry($event.value)">
+                                    <mat-option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="row" *ngIf="Volunteer.nationality === 'Ethiopia'">
+                              <!-- <span>Address</span> -->
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Residence</mat-label>
+                                  <mat-select [(ngModel)]="Volunteer.address" name="address" (selectionChange)="onSelectAddress($event.value)">
+                                    <mat-option [value]="'regional'">Regional</mat-option>
+                                    <mat-option [value]="'non_regional'">Non-Regional</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="row" *ngIf="Volunteer.nationality === 'Ethiopia'">
+                              <div class="col-md-3" *ngIf="Volunteer.address === 'regional'">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Region</mat-label>
+                                  <mat-select  [(ngModel)]="Volunteer.state_Region" name="stateRegion">
+                                    <mat-option value="Amhara">Amhara</mat-option>
+                                    <mat-option value="Tigray">Tigray</mat-option>
+                                    <mat-option value="Gambela">Gambela</mat-option>
+                                    <mat-option value="Harar">Harar</mat-option>
+                                    <mat-option value="Oromia">Oromia</mat-option>
+                                    <mat-option value="Sidama">Sidama</mat-option>
+                                    <mat-option value="Afar">Afar</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3" *ngIf="Volunteer.address === 'regional'">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Zone</mat-label>
+                                  <mat-select  [(ngModel)]="Volunteer.residence_Country" name="residenceCountry">
+                                    <mat-option value="swolo">South wollo</mat-option>
+                                    <mat-option value="nwollo">North wollo</mat-option>
+                                    <mat-option value="arisi">arisi</mat-option>
+                                    <mat-option value="meki">meki</mat-option>
+                                    <mat-option value="shire">south gojam</mat-option>
+                                    <mat-option value="axum">bale</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3" *ngIf="Volunteer.address === 'non_regional'">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>City</mat-label>
+                                  <mat-select placeholder="Select City" [(ngModel)]="Volunteer.city" name="city">
+                                    <mat-option value="Addis Ababa">Addis Ababa</mat-option>
+                                    <mat-option value="Sheger">Sheger</mat-option>
+                                    <mat-option value="Dire Dawa">Dire Dawa</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3" *ngIf="Volunteer.address === 'non_regional'">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Sub city</mat-label>
+                                  <mat-select placeholder="Select Subcty" [(ngModel)]="Volunteer.residence_Country" name="city">
+                                    <mat-option value="arada">arada</mat-option>
+                                    <mat-option value="adisketema">adis ketema</mat-option>
+                                    <mat-option value="bole">bole</mat-option>
+                                    <mat-option value="yeka">yeka</mat-option>
+                                    <mat-option value="akality">akaki kality</mat-option>
+                                    <mat-option value="kolfe">kolfe</mat-option>
+                                    <mat-option value="nsilk">nifas silk</mat-option>
+                                    <mat-option value="kirkos">kirkos</mat-option>
+                                    <mat-option value="lkura">lemi kura</mat-option>
+                                    <mat-option value="gullele">Gullele</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3" *ngIf="Volunteer.address === 'non_regional'
+                              || Volunteer.address === 'regional'">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Woreda</mat-label>
+                                  <input matInput  [(ngModel)]="Volunteer.wereda_ID" name="Woreda" required>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3" *ngIf="Volunteer.address === 'non_regional'
+                              || Volunteer.address === 'regional'">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Kebele</mat-label>
+                                  <input matInput  [(ngModel)]="Volunteer.kebele" name="kebele" required>
+                                </mat-form-field>
+                              </div>
+                              <!-- Add additional fields for Woreda and Kebele if necessary -->
+                            </div>
+                            <div class="row" *ngIf="selectedCountry !== 'Ethiopia' && selectedCountry !== undefined">
+                              <span>Address</span>
+                              <div class="col-md-12">
+                                <mat-form-field class="full-width">
+                                  <mat-label>City</mat-label>
+                                  <input matInput placeholder="Enter city" [(ngModel)]="Volunteer.city" name="city" required>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                  <mat-label>Street Address</mat-label>
+                                  <input matInput placeholder="Enter street address" [(ngModel)]="Volunteer.sdP_ID" name="streetAddress" required>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                  <mat-label>Postal Code</mat-label>
+                                  <input matInput placeholder="Enter postal code" [(ngModel)]="Volunteer.house_No" name="postalCode" >
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <button mat-raised-button type="submit" [hidden]="isEdit"  class="btn btn-success pull-left">Save</button>
+                            <button mat-raised-button type="submit" [hidden]="!isEdit"  class="btn btn-primary ">update</button>
+                            <div class="clearfix"></div>
+                          </form>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card card-profile">
+                    <div class="card-avatar">
+                      <img class="img-avatar" [src]="documentupload" alt="Uploaded Document" />
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title">You Can Upload Your Photo</h4>
+                      <p-fileUpload #fileUpload id="File" name="demo[]" [customUpload]="true" [auto]="true"
+                      chooseLabel="Upload" (uploadHandler)="upload($event)" accept="image/*" 
+                                    [maxFileSize]="300000" translate>
+                       
+                     
+                      </p-fileUpload>
+                    </div>
+                  </div>
+                  
+                
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="stepper-buttons">
+        <button type="button" mat-button matStepperPrevious class="prev-button">Previous</button>
+        <button type="button" mat-button matStepperNext class="next-button btn btn-primary" [disabled]="form.invalid">Next</button>
+      </div>
+    </mat-step>
+  
+    <!-- Second Step -->
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>Back Ground Status</ng-template>
+      <div class="main-content">
+        <app-back-ground-status [custid]="custid" (updateClicked)="moveToNextStep()" (prevClicked)="prevClicked()"></app-back-ground-status>
+      </div>
+      <!-- <div class="stepper-buttons">
+        <button type="button" mat-button matStepperPrevious class="prev-button">Previous</button>
+        <button type="button" mat-button matStepperNext class="next-button">Next</button>
+      </div> -->
+    </mat-step>
+  
+    <!-- Third Step -->
+    <mat-step>
+      <ng-template matStepLabel>Final Form</ng-template>
+      <div class="main-content">
+        <app-volunteer-form [custid]="custid" (updateClicked)="moveToNextStep()" (prevClicked)="prevClicked()"></app-volunteer-form>
+      </div>
+      <!-- <div class="stepper-buttons">
+        <button type="button" mat-button matStepperPrevious class="prev-button">Previous</button>
+        <button type="button" mat-button  class="next-button" (click)="goToorgComponent()">Submit</button>
+      </div> -->
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<p-toast position="bottom-right"></p-toast>

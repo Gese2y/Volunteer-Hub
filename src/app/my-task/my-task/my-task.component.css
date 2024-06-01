@@ -1,0 +1,57 @@
+tr.active td {
+  background-color: #123456 !important;
+  color: white;
+}
+
+tr.green {
+  background-color: #2ec800 !important;
+  color: white;
+}
+
+tr.yellow {
+  background-color: #f1e800 !important;
+  color: black;
+}
+tr.red {
+  background-color: #e12600 !important;
+  color: white;
+}
+tr {
+  border: 1px solid black;
+}
+tr th {
+  border: 1px solid black;
+}
+tr td {
+  border-right: 1px solid black;
+}
+
+.set_loading_positon {
+  position: relative;
+  left: 40%;
+}
+
+.border_zero {
+  border-left: 0;
+  border-right: 0;
+}
+.message-next-prev {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+.loading-spinner-container {
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading-spinner {
+  font-size: 2.5em;
+}
+.nsm-dialog {
+  max-width: 40vw !important;
+}
+.message-not-available {
+  margin: 10vh 0;
+}

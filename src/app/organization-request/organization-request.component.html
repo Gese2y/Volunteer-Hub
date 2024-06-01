@@ -1,0 +1,123 @@
+<div class="main-content" style="margin-left: 200px;">
+  <ng-template matStepLabel>Personal Info</ng-template>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="backgroundForm" (ngSubmit)="submitForm()">
+              <div class="row">
+                <!-- <span>Service Area</span> -->
+                <div class="col-md-6">
+                  
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Service Area</mat-label >
+                    <mat-select  (selectionChange)="onSelectLanguage($event.value)" 
+                    formControlName="service_area" required>
+                      <mat-option value="First aid and community health promotion services">First aid and community health promotion services</mat-option>
+                      <mat-option value="Ambulance services">Ambulance services</mat-option>
+                      <mat-option value="First Aid Instruction services">First Aid Instruction services</mat-option>
+                      <mat-option value="ERCS community Health Services">ERCS community Health Services</mat-option>
+                      <mat-option value="Lonely, elderly and disabled people support services">Lonely, elderly and disabled people support services</mat-option>
+                      <mat-option value="Emergency response and stand by services">Emergency response and stand by services</mat-option>
+                      <mat-option value="Tracing Services">Tracing Services</mat-option>
+                      <mat-option value="Disaster Risk Reduction activities like terracing and reforestation">Disaster Risk Reduction activities like terracing and reforestation</mat-option>
+                      <mat-option value="Dissemination and membership drive services">Dissemination and membership drive services</mat-option>
+                      <mat-option value="Fund raising activities">Fund raising activities</mat-option>
+                      <mat-option value="Office services">Office services</mat-option>
+                      <mat-option value="Technical services">Technical services</mat-option>
+                      <mat-option value="Volunteer planning, implementation and coordination services">Volunteer planning, implementation and coordination services</mat-option>
+                      <mat-option value="Focal point services for other volunteer activities">Focal point services for other volunteer activities</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Number Of Volunteers</mat-label>
+                    <input matInput type="number"  formControlName="no_volunteer" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Number of days</mat-label>
+                    <input matInput placeholder="Number of days" formControlName="no_day" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <!-- <span>Start Date</span> -->
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="picker1"  formControlName="start_date" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                  <!-- <span *ngIf="doblimit" class="dob-warning">You must be at least 12 years old</span> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="picker2"  formControlName="end_date" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                  <span *ngIf="doblimit" class="dob-warning">End Date must be greater than Start date</span>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Required Skill</mat-label>
+                    <input matInput  formControlName="required_skill" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Administrative Arrangements</mat-label>
+                    <!-- <input matInput placeholder="Administrative Arrangements" formControlName="administrative_arrangment" required> -->
+                    <mat-select  (selectionChange)="onSelectLanguage($event.value)" 
+                    formControlName="administrative_arrangment" required multiple>
+                      <mat-option value="Accommodation">Accommodation</mat-option>
+                      <mat-option value="Meals">Meals</mat-option>
+                      <mat-option value="Transportation">Transportation</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Qualification</mat-label>
+                    <input matInput  formControlName="qualification" >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Additional Comment</mat-label>
+                    <textarea matInput  formControlName="comment"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button mat-raised-button type="button" (click)="save()" [hidden]="isEdit" class="btn btn-danger pull-right">Save</button>
+                <button mat-raised-button type="button" (click)="update()" [hidden]="!isEdit" class="btn btn-success pull-right">Update</button>
+                <div class="clearfix"></div>
+              </div>
+            </form>
+
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+<div class="stepper-buttons">
+  <button type="button" mat-button  class="prev-button" (click)="prev()">Previous</button> 
+  <button type="button" mat-button  class="next-button btn btn-primary" [disabled]="backgroundForm.invalid" (click)="next()">Submit</button>
+</div>
+<p-toast position="bottom-right"></p-toast>

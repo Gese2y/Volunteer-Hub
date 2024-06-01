@@ -1,0 +1,78 @@
+
+
+<div class="p-3 bg-success text-white">
+  <table class="table">
+    <thead>
+      <tr class="custom-bg-success">
+        <th id="Applicationno" scope="col" translate>
+          <span for="Applicationno" translate>Application No:</span>
+          <!-- {{ licenceData.Application_No }} -->
+          {{AppNo}}
+        </th>
+
+        <!-- <th id="serviceName" scope="col" translate>
+          <span for="serviceName" translate> Services:</span> -->
+          <!-- {{ licenceData.Service_Name }} -->
+        <!-- </th> -->
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<app-volunteer></app-volunteer>
+<div
+  class="p-3 border-secondary border-5 bg-secondary text-white h-10 text-center m-10 mt-10"
+>
+  <div class="btn-group">
+    <!-- <button class="btn btn-primary mr-2" *ngIf="!hideit"  type="button" (click)="showdialogg()" translate>Not Complete</button> -->
+
+    <!-- <button  type="button" class="btn btn-primary mr-2" (click)="Back()" translate>Back</button> -->
+    <button type="button" class="btn btn-primary mr-2" translate>Review</button>
+    <!-- <button type="button" class="btn btn-primary mr-2" *ngIf="isSuperviedUsers" (click)="killtodo()" translate>terminate the process</button> -->
+    <!-- <button type="button" class="btn btn-primary mr-2" *ngIf="isSuperviedUsers" (click)="Reopentodo()" translate>Reopen</button> -->
+
+    <!-- [disabled]="disablefins" -->
+
+    <span class="dropdown dropup">
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle mr-2"
+        data-toggle="dropdown"
+        translate
+      >
+        Required Action
+      </button>
+
+      <span class="dropdown-menu">
+        <a class="dropdown-item">Submit/ላከው</a>
+        <span>
+          <!-- <span *ngFor="let DropDownLists of DropDownList">
+            <a class="dropdown-item"
+            (click)="showdialog(DropDownLists.task_rules_code, DropDownLists.rule_Code)">{{ language === 'amharic' ? DropDownLists.decision_rule_Local : DropDownLists.decision_rule_en }}
+            </a>
+              <li class="divider dropdown-divider"></li>
+            </span> -->
+        </span>
+      </span>
+    </span>
+
+    <!-- <div class="btn-group">
+    <span class="btn-group dropup" dropdown [isDisabled]="serviceService.disablefins">
+      <button type="button" 
+      dropdownToggle id="button-basic" aria-controls="dropdown-basic" 
+              class="btn btn-primary dropdown-toggle mr-2 "data-bs-toggle="dropdown"translate>Required Action</button>
+      <span class="dropdown-menu dropdown-menu-end " id="dropdown-basic" role="menu" aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item" *ngIf="tskTyp!='c800fb16-f961-e111-95d6-00e04c05559b'"
+          (click)="Submit('00000000-0000-0000-0000-000000000000')" translate>Submit</a>
+         <span *ngIf="tskTyp == 'c800fb16-f961-e111-95d6-00e04c05559b'">
+        
+      </span></li>
+        <li *ngFor="let DropDownLists of DropDownList;" role="menuitem"><a class="dropdown-item"
+          (click)="showdialog(DropDownLists.task_rules_code, DropDownLists.rule_Code)">{{DropDownLists.decision_rule_en}}
+          </a> </li>
+        </span>
+    </span>
+  </div> -->
+    <button class="btn btn-primary mr-2" translate>Pend & close</button>
+  </div>
+</div>

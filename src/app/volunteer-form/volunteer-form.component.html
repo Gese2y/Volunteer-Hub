@@ -1,0 +1,172 @@
+<div class="main-content" style="margin-left: 200px;">
+    <ng-template matStepLabel>Personal Info</ng-template>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-8">
+              <div class="card">
+                 
+                  <div class="card-body">
+                      <form #formback="ngForm">
+                        <div class="row">
+                            
+                            <div class="col-md-10">
+
+                               
+                                  <mat-form-field class="example-full-width">
+<mat-label>Service Area</mat-label>
+                                    <mat-select  (selectionChange)="onSelectLanguage($event.value)" 
+                                    [(ngModel)]="Volunteership.service_Area" name="service_Area" required>
+                                      <mat-option value="First aid and community health promotion services">First aid and community health promotion services</mat-option>
+                                      <mat-option value="Ambulance services">Ambulance services</mat-option>
+                                      <mat-option value="First Aid Instruction services">First Aid Instruction services</mat-option>
+                                      <mat-option value="ERCS community Health Services">ERCS community Health Services</mat-option>
+                                      <mat-option value="Lonely, elderly and disabled people support services">Lonely, elderly and disabled people support services</mat-option>
+                                      <mat-option value="Emergency response and stand by services">Emergency response and stand by services</mat-option>
+                                      <mat-option value="Tracing Services">Tracing Services</mat-option>
+                                      <mat-option value="Disaster Risk Reduction activities like terracing and reforestation">Disaster Risk Reduction activities like terracing and reforestation</mat-option>
+                                      <mat-option value="Dissemination and membership drive services">Dissemination and membership drive services</mat-option>
+                                      <mat-option value="Fund raising activities">Fund raising activities</mat-option>
+                                      <mat-option value="Office services">Office services</mat-option>
+                                      <mat-option value="Technical services">Technical services</mat-option>
+                                      <mat-option value="Volunteer planning, implementation and coordination services">Volunteer planning, implementation and coordination services</mat-option>
+                                      <mat-option value="Focal point services for other volunteer activities">Focal point services for other volunteer activities</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                            </div></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Avialability in Day</mat-label>
+                                    <mat-select placeholder="Select Avialability" (selectionChange)="onSelectProfession($event.value)" 
+                                    [(ngModel)]="Volunteership.avaialability_in_day" name="avaialability_in_day" required>
+                                      <mat-option [value]="'Monday'">Monday</mat-option>
+                                      <mat-option [value]="'tuesday'">Tuesday</mat-option>
+                                      <mat-option [value]="'Wednsday'">Wednsday</mat-option>
+                                      <mat-option [value]="'Thursday'">Thursday</mat-option>
+                                      <mat-option [value]="'Friday'">Friday</mat-option>
+                                      <mat-option [value]="'Saturday'">Saturday</mat-option>
+                                      <mat-option [value]="'Sunday'">Sunday</mat-option>
+                                      <mat-option [value]="'every day'">Every Day</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Avialability in Hour</mat-label>
+                                    <mat-select placeholder="Select Field Of Study" (selectionChange)="onSelectAddress($event.value)" 
+                                    [(ngModel)]="Volunteership.avialability_in_our" name="avialability_in_our" required>
+                                        <mat-option [value]="'morning'">Morninig</mat-option>
+                                      <mat-option [value]="'after_noon'">After Noon</mat-option>
+                                      <mat-option [value]="'24 hour'">24 hour</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            
+                            
+                        </div>
+                          <div class="row">
+                              <span>reason TO Volunteering With ERCS</span>
+                              <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                    <textarea matInput [(ngModel)]="Volunteership.reason" name="reason" required></textarea>
+                                  </mat-form-field>
+                              </div>
+                            
+                              
+                          </div>
+                          <div class="row">
+                            <span>Additional Comment</span>
+                            <div class="col-md-12">
+                              <mat-form-field class="example-full-width">
+                                  <textarea matInput [(ngModel)]="Volunteership.comment" name="comment"></textarea>
+                                </mat-form-field>
+                            </div>
+                          
+                            
+                        </div>
+                        
+                         
+                       
+                          <button mat-raised-button  class="btn btn-danger pull-right" [hidden]="isEdit" (click)="save()">Save</button>
+                          <button mat-raised-button  class="btn btn-success pull-right" [hidden]="!isEdit"  (click)="update()">update</button>
+                          <button mat-raised-button  class="btn btn-primary pull-right" [hidden]="!isEdit" (click)="Add()">Add New</button>
+                          <button mat-raised-button  class="btn btn-danger pull-right" [hidden]="!isEdit" (click)="delete()">delete</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+     
+      </div>
+  </div>
+  <!-- <table id="data-table2" #dataTable2 style="width: 100%" class="table col-md-12 text-center table-bordered">
+      <thead style="background-color: #ADD8E6; color: black; font-weight: bold;">
+        <tr>
+          <th >Language</th>
+          <th>Service Area</th>
+          <th>Avaialability in Day</th>
+          <th>Avaialability in hour</th>
+          <th>reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of VolunteershipLists">
+          <td>{{ data.customer_id }}</td>
+          <td>{{ data.service_Area }}</td>
+          <td>{{ data.avaialability_in_day }}</td>
+          <td>{{ data.avialability_in_our }}</td>
+          <td>{{ data.reason }}</td>
+          <td><button type="button" class="btn btn-outline-danger"
+            (click)="edit(data)"><mat-icon>edit</mat-icon></button></td>
+        </tr>
+      </tbody>
+    </table> -->
+    <p-table #table [value]="VolunteershipLists" [paginator]="true" [rows]="3" selectionMode="single"
+  [globalFilterFields]="['service_Area','avaialability_in_day']" (onRowSelect)="edit($event)" (onRowUnselect)="onRowUnselect()"
+  >
+  <ng-template pTemplate="caption">
+  
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+    <tr>
+      <!-- <th>Remark Profestional</th> -->
+      <th>Service Area</th>
+      <th>Avaialability in Day</th>
+      <th>Avaialability in hour</th>
+      <th>reason</th>
+      <!-- <th>Job opportunuty Created</th> -->
+      <!--<th>No of Receipt To</th>
+      <th>No of Pad</th> -->
+      <!-- <th>Total Revenue Birr</th>
+      <th>Operation Birr</th>
+       <th>Reclamation Birr</th>
+      <th>Land Rent Birr</th>  -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-renewal>
+    <tr [pSelectableRow]="renewal">
+    <td>{{ renewal.service_Area }}</td>
+    <td>{{ renewal.avaialability_in_day }}</td>
+    <td>{{ renewal.avialability_in_our }}</td>
+    <td>{{ renewal.reason }}</td>
+    <!-- <td>{{ renewal.sales_performance }}</td> -->
+    <!-- <td>{{ renewal.job_opportunity_created }}</td> -->
+   <!-- <td>{{ renewal.no_of_receipt_to }}</td>
+    <td>{{ renewal.no_of_pad }}</td> -->
+    <!-- <td>{{ renewal.total_Revenue_Birr }}</td>
+    <td>{{ renewal.operation_Birr }}</td>
+    <td>{{ renewal.reclamation_Birr }}</td>
+    <td>{{ renewal.land_Rent_Birr }}</td>  -->
+    </tr>
+  </ng-template>
+</p-table>
+</div>
+<div class="stepper-buttons">
+  <button type="button" mat-button  class="prev-button" (click)="prev()">Previous</button>
+  <button type="button" mat-button  class="next-button btn btn-primary" [disabled]="formback.invalid" (click)="next()">Next</button>
+</div>
+<p-toast position="bottom-right"></p-toast>
+

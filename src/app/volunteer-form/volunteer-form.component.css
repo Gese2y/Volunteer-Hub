@@ -1,0 +1,90 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-container mat-form-field {
+    width: 220px;
+  }
+  
+  .example-container form {
+    margin-bottom: 20px;
+  }
+  
+  .example-container form > * {
+    margin: 12px 0;
+  }
+  
+  .example-container .mat-radio-button {
+    margin: 0 12px;
+  }
+  
+  .example-form-fields {
+    display: flex;
+    align-items: flex-start;
+  }
+  .card-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* Makes the div circular */
+    overflow: hidden; /* Ensures the image stays within the circle */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center *//* Set the image as background */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+}
+.card-profile {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  /* Add any other styles you need for the card */
+}
+
+.card-avatar {
+  /* Optional: add any specific styling for the card avatar */
+}
+
+.img {
+  height: 200px;
+  /* Other image styles */
+}
+.stepper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.next-button {
+
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.next-button:hover {
+  background-color: #0056b3;
+}
+
+.prev-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.prev-button:hover {
+  background-color: #5a6268;
+}

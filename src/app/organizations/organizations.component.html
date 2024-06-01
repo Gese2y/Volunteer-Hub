@@ -1,0 +1,296 @@
+<div *ngIf="isUser">
+  <div class="notification2" >
+    <div class="notification2-content">
+      <p class="notification2-title"> You are not registered.</p>
+      <p class="notification2-message">
+        If you have already registered, you can
+        <a href="http://redc.xokait.com.et/en-us/login">Login</a>. If you are not registered, you can
+        <a href="http://redc.xokait.com.et/en-us/register">Register</a> .
+      </p>
+      <!-- <button class="close" (click)="closeNotification()">×</button> -->
+    </div>
+  </div>
+    
+    
+  </div>
+  <div *ngIf="isSubmitted">
+    <div class="notification1">
+      thank you, You are submitted your Registration, Once your registration is approved, you will receive a confirmation email.
+      <!-- <button class="close">×</button> -->
+    </div>
+    
+    
+  </div>
+ 
+  <div *ngIf="!isApproved">
+    <div class="notification">
+      <p class="notification-title">Registration In Progress</p>
+      <p class="notification-message">
+        Thank you for registering! Your application is currently under review. Our team is verifying the information you provided. This process may take a few days. Once your registration is approved, you will receive a confirmation email.
+      </p>
+      <p class="notification-instructions">
+        If you have any questions or need further assistance, please contact our support team at <a href="mailto:support@example.com">support@example.com</a>.
+      </p>
+    </div>
+  </div>
+  
+  
+  <div *ngIf="!isUser && 
+   isOrganization&&  
+  !isSubmitted &&isApproved">
+
+      <mat-horizontal-stepper #stepper>
+          <!-- First Step -->
+          <mat-step [stepControl]="secondFormGroup">
+            <ng-template matStepLabel>Terms And Conditions</ng-template>
+            <div class="main-content">
+              <div class="main-content" style="margin-left: 200px; margin-right: 200px;">
+                <div class="container-fluid">
+                    <div class="terms-and-conditions">
+                        <h2>Terms and Conditions</h2>
+                        <p>
+                            Volunteering in the International Red Cross and Red Crescent Movement is an activity that is motivated by the free will of the person volunteering, and not by a desire for material or financial gain or by external social, economic or political pressure. It is primarily intended to benefit vulnerable people or their communities.
+                        </p>
+                        <p>
+                            ERCS recognize that volunteers are the true foundation of its humanitarian and development work for vulnerable people throughout the country and they are its most important resources.
+                        </p>
+                        <p>
+                            Partner organizations recognize that volunteers are a vital human resource. In addition, as such your commitment is required to create a protective shield to support volunteers by:
+                        </p>
+                        <ul>
+                            <li>Providing volunteers with appropriate infrastructure for the discharge of their duties through relevant training and induction,</li>
+                            <li>Providing appropriate information to their volunteers on the nature and condition of their voluntary assignment,</li>
+                            <li>Ensuring safe, secure and healthy conditions at work, in accordance with the nature of the volunteer activity,</li>
+                            <li>Ensuring that an appropriate policy is in place for volunteers, covering eventual risks of accident or illness directly related to the volunteer activity in line with organizational policies,</li>
+                            <li>Reimbursing any expenses incurred by volunteers in fulfilling their volunteer tasks, up to reasonable limits,</li>
+                            <li>Be aware of any damages or injuries their volunteers may cause by any action or omission in the course their voluntary work, provided that the volunteers act with due diligence and in good faith, and</li>
+                            <li>Recognizing the contribution of volunteers with a token of appreciation or issue a certificate acknowledging their contribution at the end of their service.</li>
+                        </ul>
+                        <p>
+                            By and large, Partner organization should respect and act upon the above points so as to create a good working environment for Volunteers.
+                        </p>
+                        <form [formGroup]="terms">
+                            <div class="form-check">
+                                <input type="checkbox" formControlName="agreeTerms" class="form-check-input" id="agreeTerms" required>
+                                <label class="form-check-label" for="agreeTerms">I read and agree on the Terms & Conditions</label>
+                            </div>
+                        </form>
+                        <button type="button" mat-button matStepperNext class="next-button" [disabled]="terms.invalid">Next</button>
+                    </div>
+                </div>
+            </div>
+             </div>
+            <!-- <div class="stepper-buttons">
+              <button type="button" mat-button matStepperPrevious class="prev-button">Previous</button>
+              <button type="button" mat-button matStepperNext class="next-button" (click)="submit()">Submit</button>
+            </div> -->
+          </mat-step>
+        
+          <mat-step [stepControl]="firstFormGroup">
+            <ng-template matStepLabel>Organizational Info</ng-template>
+            <div class="main-content" style="margin-left: 20%;">
+              <!-- Your form content here -->
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-md-8">
+                          <div class="card">
+                              <div class="card-header card-header-danger">
+                                  <p class="card-category">Complete your Info</p>
+                              </div>
+                              <div class="card-body">
+                                <form [formGroup]="backgroundForm" (ngSubmit)="submitForm()">
+                                  <!-- Organization Details Section -->
+                                  
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <!-- <span>Date Of Birth</span> -->
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Organization Name</mat-label>
+                                        <input matInput formControlName="name" placeholder="Enter organization name" required>
+                                      </mat-form-field>
+                                    </div>
+                                   
+                                    <div class="col-md-4">
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Organization Type</mat-label>
+                                        <mat-select formControlName="organization_type" required>
+                                          <mat-option *ngFor="let type of orgTypes" [value]="type">{{ type }}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field></div>
+                                      <div class="col-md-4">
+                                        <mat-form-field  class="example-full-width">
+                                          <mat-label>Working Sector</mat-label>
+                                          <mat-select formControlName="sector" required>
+                                            <mat-option *ngFor="let sector of sectors" [value]="sector">{{ sector }}</mat-option>
+                                          </mat-select>
+                                        </mat-form-field></div>
+                                  </div>
+                                  <div class="row">
+                                    <span>Owners</span>
+                                    <div class="col-md-4">
+                                      <!-- <span>Date Of Birth</span> -->
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Owner's</mat-label>
+                                        <input matInput formControlName="owners_name" placeholder="Enter organization owners name" required>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                     <mat-form-field  class="example-full-width">
+                                    <mat-label> Phone Number</mat-label>
+                                    <input matInput formControlName="owner_phone_no" placeholder="Enter owners contact number" >
+                                  </mat-form-field></div>
+                                    <div class="col-md-4">
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput formControlName="owner_email" type="email" placeholder="Enter owner email" >
+                                      </mat-form-field></div>
+                                  </div>
+                                  <!-- Contact Information Section -->
+                                  <div class="row">
+                                    <span>Contact Person</span>
+                                    <div class="col-md-4">
+                                      <!-- <span>Date Of Birth</span> -->
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Contact Person</mat-label>
+                                        <input matInput formControlName="contact_person" placeholder="Enter contact person's name" required>
+                                       </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                     <mat-form-field  class="example-full-width">
+                                      <mat-label>Phone Number</mat-label>
+                                      <input matInput formControlName="phone_number" placeholder="Enter phone number" >
+                                   </mat-form-field></div>
+                                    <div class="col-md-4">
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput formControlName="email" placeholder="Enter email" >
+                                       </mat-form-field></div>
+                                  </div>
+                               
+                                
+                                  <!-- Address Section -->
+                                  <div class="section">
+                                    <mat-form-field class="example-full-width">
+                                      <mat-label>Country</mat-label>
+                                      <mat-select formControlName="country" placeholder="Select a country" (selectionChange)="onSelectCountry($event.value)">
+                                        <mat-option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                
+                                    <!-- <div class="row" *ngIf="selectedCountry == 'Ethiopia'">
+                                      <span>Address</span>
+                                      <div class="col-md-4">
+                                        <mat-form-field class="example-full-width">
+                                          <mat-select formControlName="address" placeholder="Select Address" (selectionChange)="onSelectAddress($event.value)">
+                                            <mat-option [value]="'regional'">Regional</mat-option>
+                                            <mat-option [value]="'non_regional'">Non-Regional</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div>
+                                    </div> -->
+                                    <div class="row">
+                                      <span>head office Address</span>
+                                      <div class="col-md-4">
+                                        <!-- <span>Date Of Birth</span> -->
+                                        <mat-form-field  class="example-full-width">
+                                          <mat-label>City</mat-label>
+                                          <input matInput formControlName="region" placeholder="Enter city" required>
+                                        </mat-form-field>
+                                      </div>
+                                      <div class="col-md-4">
+                                       <mat-form-field  class="example-full-width">
+                                        <mat-label>Street Address</mat-label>
+                                          <input matInput formControlName="zone" placeholder="Enter street address" required>
+                                        </mat-form-field></div>
+                                      <div class="col-md-4">
+                                        <mat-form-field  class="example-full-width">
+                                          <mat-label>Postal Code</mat-label>
+                                          <input matInput formControlName="woreda" placeholder="Enter postal code" >
+                                        </mat-form-field></div>
+                                    </div>
+                                   
+                                  </div>
+                                
+                                  <!-- Additional Information Section -->
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <!-- <span>Date Of Birth</span> -->
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Employee Size</mat-label>
+                                        <input matInput formControlName="employee_size" type="number" placeholder="Enter employee size" >
+                                       </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                     <mat-form-field  class="example-full-width">
+                                      <mat-label>Number Of Branch</mat-label>
+                                      <input matInput formControlName="branch" type="number" placeholder="Enter number of branches" >
+                                    </mat-form-field></div>
+                                   
+                                  </div>
+                                 
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <!-- <span>Date Of Birth</span> -->
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Website</mat-label>
+                                        <input matInput formControlName="website" placeholder="Eg:www.companyweb.org.et" >
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <mat-form-field  class="example-full-width">
+                                        <mat-label>Social Media Link</mat-label>
+                                        <input matInput formControlName="social_media" placeholder="Eg: facbook, instagram, linkdin" >
+                                      </mat-form-field>
+                                    </div>
+                                  
+                                  </div>
+                                  <!-- Form Actions -->
+                                  <div class="form-actions">
+                                    <button mat-raised-button class="btn btn-danger pull-right" [hidden]="isEdit" type="button" (click)="save()">Save</button>
+                                    <button mat-raised-button class="btn btn-success pull-right" [hidden]="!isEdit" type="button" (click)="update()">Update</button>
+                                  </div>
+                                </form>
+                                
+                              </div>
+                          </div>
+                      </div>
+                      <!-- <div class="col-md-4">
+                        <div class="card card-profile">
+                          <div class="card-avatar">
+                              <img style="height: 200px; display: block; margin: 0 auto;" class="img" [src]="image" />
+                          </div>
+                          <div class="card-body">
+                              <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+                              <h4 class="card-title">You Can Upload Ceo Photo</h4>
+                              <a href="javascript:void(0)" class="btn btn-danger btn-round">Upload</a>
+                          </div>
+                      </div>
+                      
+                      </div> -->
+                  </div>
+              </div>
+            </div>
+            <div class="stepper-buttons">
+              <button type="button" matStepperPrevious mat-button  class="prev-button" (click)="prev()">Previous</button> 
+              <button type="button"  mat-button  class="btn btn-primary" [disabled]="backgroundForm.invalid"  (click)="Submit('00000000-0000-0000-0000-000000000000')">
+                Submit/ላከው
+              </button>
+              
+            </div>
+          </mat-step>
+        
+          <!-- Second Step -->
+          <!-- <mat-step [stepControl]="secondFormGroup">
+            <ng-template matStepLabel>Request Form</ng-template>
+            <div class="main-content">
+              <app-organization-request [custid]="custid" (updateClicked)="moveToNextStep()" (prevClicked)="prevClicked()"></app-organization-request>
+            </div>
+          
+          </mat-step> -->
+        
+          <!-- Third Step -->
+         
+        </mat-horizontal-stepper>
+  </div>
+
+  <p-toast position="bottom-right"></p-toast>

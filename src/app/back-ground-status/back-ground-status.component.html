@@ -1,0 +1,164 @@
+<div class="main-content" style="margin-left: 200px;">
+  <ng-template matStepLabel>Personal Info</ng-template>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <p class="card-category">Complete your BackGround Detail</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="backgroundForm"  (ngSubmit)="submitForm()" #formback="ngForm">
+              <div class="row">
+                <!-- Educational Status -->
+                <div class="col-md-4" [class.col-md-4]="isProfession" [class.col-md-5]="!isProfession">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>educational status</mat-label>
+                    <mat-select placeholder="Select Status" formControlName="education_status"
+                    (selectionChange)="onSelectProfession($event.value)" >
+                      <mat-option [value]="'professional'">Professional</mat-option>
+                      <mat-option [value]="'non-professional'">Non Professional</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <!-- Field of Study -->
+                <div class="col-md-4" *ngIf="isProfession">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Field Of Study</mat-label>
+                    <mat-select placeholder="Select Field Of Study" formControlName="field" required>
+                      <mat-option [value]="'Computer Science'">Computer Science</mat-option>
+                      <mat-option [value]="'Engineering'">Engineering</mat-option>
+                      <mat-option [value]="'Medicine'">Medicine</mat-option>
+                      <mat-option [value]="'Business'">Business</mat-option>
+                      <mat-option [value]="'Law'">Law</mat-option>
+                      <mat-option [value]="'Arts'">Arts</mat-option>
+                      <mat-option [value]="'Education'">Education</mat-option>
+                      <mat-option [value]="'Sciences'">Sciences</mat-option>
+                      <mat-option [value]="'Social Sciences'">Social Sciences</mat-option>
+                      <mat-option [value]="'Humanities'">Humanities</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <!-- Specialization -->
+                <div class="col-md-4" *ngIf="isProfession">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Education Level</mat-label>
+                    <mat-select placeholder="Select" formControlName="education_level" required>
+                      <mat-option [value]="'High School'">High School</mat-option>
+                      <mat-option [value]="'Associate Degree'">Associate Degree</mat-option>
+                      <mat-option [value]="'Bachelor\'s Degree'">Bachelor's Degree</mat-option>
+                      <mat-option [value]="'Master\'s Degree'">Master's Degree</mat-option>
+                      <mat-option [value]="'Doctorate'">Doctorate</mat-option>
+                      <mat-option [value]="'Postdoctoral'">Postdoctoral</mat-option>
+                      <mat-option [value]="'Professional Certification'">Professional Certification</mat-option>
+                      <mat-option [value]="'Vocational Training'">Vocational Training</mat-option>
+                      <mat-option [value]="'Other'">Other</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- Current Occupation -->
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>occupation</mat-label>
+                    <input required matInput  formControlName="occupational_responsibility">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Organization</mat-label>
+                    <input matInput  formControlName="working_organization">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label> occupied number of years </mat-label>
+                    <input matInput type="number"  formControlName="experience">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- Language -->
+              <div class="row">
+                <div class="col-md-10">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Language</mat-label>
+                    <mat-select  formControlName="language"
+                    (selectionChange)="onSelectLanguage($event.value);openDialog()" required>
+                      <mat-option [value]="'English'">English</mat-option>
+                      <mat-option [value]="'Amharic'">Amharic</mat-option>
+                      <mat-option [value]="'Somali'">Somali</mat-option>
+                      <mat-option [value]="'Oromifaa'">Oromifaa</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                
+                <!-- <div class="col-md-2">
+                  <button [disabled]="isLangselected" class="btn btn-outline-primary" (click)="openDialog()" type="button">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div> -->
+              </div>
+              <div class="row" *ngIf="isLangData">
+                <table id="data-table2" #dataTable2 style="width: 100%" class="table col-md-12 text-center table-bordered">
+                    <thead style="background-color: #ADD8E6; color: black; font-weight: bold;">
+                      <tr>
+                        <th >Language</th>
+                        <th>Speaking</th>
+                        <th>leastining</th>
+                        <th>Writing</th>
+                        <th>reading</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of dataArray1">
+                        <td>{{ data.language }}</td>
+                        <td>{{ data.speacking_skill }}</td>
+                        <td>{{ data.leastening_skill }}</td>
+                        <td>{{ data.writing_skill }}</td>
+                        <td>{{ data.reading_skill }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+            </div>
+              <!-- Relevant Skill -->
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Relaevant Skill</mat-label>
+                    <input matInput  formControlName="skill" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Previous Voluntter Experience</mat-label>
+                    <input matInput type="number"  formControlName="volunteer_experience">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div class="row">
+                <div class="col-md-12">
+                  <button mat-raised-button type="submit" class="btn btn-success pull-right" [hidden]="isEdit">Save</button>
+                  <button mat-raised-button type="submit" class="btn btn-primary pull-right" (click)="update()" [hidden]="!isEdit">Update</button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="stepper-buttons">
+  <button type="button" mat-button  class="prev-button" (click)="prev()">Previous</button>
+  <button type="button" mat-button  class="next-button btn btn-primary" [disabled]="formback.invalid" (click)="next()">Next</button>
+</div>
+<p-toast position="bottom-right"></p-toast>

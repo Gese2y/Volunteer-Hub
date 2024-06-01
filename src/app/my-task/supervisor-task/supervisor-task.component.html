@@ -1,0 +1,70 @@
+<div>
+
+  <div class="m-10" *ngIf="taskList"> <span translate>You have</span>  {{taskList.length}} <span translate>number of active tasks waiting</span> </div>
+  <p-toast position="top-right"></p-toast>
+  <div>
+    <p-table [value]="taskList" [paginator]="true" [rows]="3">
+      <ng-template pTemplate="header">
+        <tr>
+          <th  width="15%" translate>Application</th>
+          <th translate>Date</th>
+          <th translate>Task Description</th>
+          <th translate>Task Status</th>
+          <th translate>Minutes late</th>
+          <th translate>Type</th>
+          <th translate>Estimated minute To Finish This Tasks</th>
+          <th translate>Module</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-task>
+        <tr [class.green]="task.status == 'O' ||task.status == 'A' ||task.status == 'R' ||task.status == 'AS'"
+            [class.yellow]="task.status == 'S' ||task.status == 'P'"
+            [class.red]="task.Minutes_late >0">
+          <td>{{task.todo_comment}}</td>
+          <td>{{task.start_date}}</td>
+          <td>{{task.description}}</td>
+          <td>{{task.TaskStatus}}</td>
+          <td>{{task.Minutes_late}}</td>
+          <td>{{task.TaskType}}</td>
+          <td>{{task.Estimated_minute_To_Finsh_This_Tasks}}</td>
+          <td>{{task.Module}}</td>
+          <td>
+            <button type="button" class="btn btn-primary"  translate>assign</button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!--
+  
+<ngx-smart-modal #empList identifier="empList">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" translate>List of Subordinate Staff</h4>
+  </div>
+  <div class="modal-body">
+    <div class="col-sm-12 row  m-3">
+      <label for="IssuedBy" class="col-sm-4 col-form-label" translate>Select user</label>
+      <div class="col-sm-8">
+        <select class="form-control" [(ngModel)]="selectedUser" name="IssuedBy"
+                id="IssuedBy">
+          <option disabled>select</option>
+          <option *ngFor="let User of SuperviedUsers;" [value]="User.UserId">{{User.UserName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="pull-right">
+        <button type="button" class="btn btn-primary" (click)="assign('empList')" translate>Assign</button>
+      </div>
+    </div>
+
+  </div>
+</ngx-smart-modal>
+
+
+<simple-notifications></simple-notifications>
+
+-->

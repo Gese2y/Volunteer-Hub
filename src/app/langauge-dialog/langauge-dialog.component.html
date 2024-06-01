@@ -1,0 +1,55 @@
+
+<form #formlang="ngForm"></form>
+<div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="example-full-width">
+          <mat-label>Speaking</mat-label>
+            <mat-select placeholder="Select..."   [(ngModel)]="data.speacking_skill" required>
+              <mat-option [value]="'Excelent'">Excelent</mat-option>
+              <mat-option [value]="'Very Good'">Very Good</mat-option>
+              <mat-option [value]="'Good'">Good</mat-option>
+              <mat-option [value]="'Bad'">Bad</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field placeholder="Select..." class="example-full-width">
+          <mat-label>leastining</mat-label>
+            <mat-select   [(ngModel)]="data.leastening_skill" required>
+              <mat-option [value]="'Excelent'">Excelent</mat-option>
+              <mat-option [value]="'Very Good'">Very Good</mat-option>
+              <mat-option [value]="'Good'">Good</mat-option>
+              <mat-option [value]="'Bad'">Bad</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+  
+</div>
+<div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="example-full-width">
+          <mat-label>Writing</mat-label>
+            <mat-select placeholder="Select..."   [(ngModel)]="data.writing_skill" required>
+              <mat-option [value]="'Excelent'">Excelent</mat-option>
+              <mat-option [value]="'Very Good'">Very Good</mat-option>
+              <mat-option [value]="'Good'">Good</mat-option>
+              <mat-option [value]="'Bad'">Bad</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="example-full-width">
+          <mat-label>Reading</mat-label>
+            <mat-select placeholder="Select..."   [(ngModel)]="data.reading_skill" required>
+              <mat-option [value]="'Excelent'">Excelent</mat-option>
+              <mat-option [value]="'Very Good'">Very Good</mat-option>
+              <mat-option [value]="'Good'">Good</mat-option>
+              <mat-option [value]="'Bad'">Bad</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions> 
+    <button type="button" [disabled]="formlang.invalid" class="btn btn-outline-primary" mat-button [mat-dialog-close]="data"  
+               cdkFocusInitial>Ok</button> 
+  </div> 

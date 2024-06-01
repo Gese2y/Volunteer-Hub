@@ -1,0 +1,56 @@
+<div class="container">
+    <h2 class="text-center mb-4">Volunteer Application Form</h2>
+    <form (ngSubmit)="submitForm()" #volunteerForm="ngForm" style="max-width: 600px; margin: auto;">
+      <!-- Volunteer Type -->
+      <div class="form-group small-text">
+        <label >Volunteer Type</label>
+        <select id="volunteerType" class="form-select">
+            <option value="regular">choose Type</option>
+            <option value="regular">Regular Volunteer</option>
+            <option value="onCall">On-Call Volunteer</option>
+            <option value="disasterResponse">Disaster Response Volunteer</option>
+            <option value="specialEvents">Special Events Volunteer</option>
+        </select>
+      </div>
+  
+      <!-- Availability -->
+      <div class="form-group small-text">
+        <label >Availability</label>
+        <select id="availability" class="form-select">
+            <option value="regular">choose Avialablity</option>
+            <option value="regular">Once or twice a week regularly</option>
+            <option value="whenNeeded">When needed</option>
+            <option value="disasters">At disasters</option>
+            <option value="specialEvents">At Special Events</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="small-text">Voluntary Service Areas</label>
+        <select [disabled]="service!='choose'" id="voluntaryServiceAreas" class="form-select">
+            <option value="service">{{service}}</option>
+            <option value="firstAid">First aid and community health promotion services</option>
+            <option value="ambulance">Ambulance services</option>
+        </select>
+      </div>
+      <!-- Reasons for Volunteering -->
+      <div class="form-group small-text">
+        <label class="">Reasons for Volunteering with ERCS</label>
+        <textarea name="reasons" rows="4" class="form-control"></textarea>
+      </div>
+  
+      <!-- Voluntary Service Areas -->
+   
+  
+ 
+  
+      <!-- Additional Comments or Questions -->
+      <div class="form-group">
+        <label class="small-text">Additional Comments or Questions</label>
+        <textarea name="comments" rows="4" class="form-control" ></textarea>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+    </form>
+  </div>
+
