@@ -153,6 +153,10 @@ export class ServiceComponent {
       this.getAll(this.AppNo);
       this.tskTyp = params["tskTyp"];
       this.tskID = params["tskID"];
+      this.serviceService.getFormData(this.formcode).subscribe(
+        (success:any) => (this.ID = 1),
+        (error:any) => (this.ID = 404)
+      );
       // if (this.serviceService.propertytaskslist != undefined) {
       //   let filterpropertyid = this.serviceService.propertytaskslist.filter(
       //     (x: any) => x.id.toLocaleLowerCase() === this.tskID
@@ -248,6 +252,11 @@ export class ServiceComponent {
     }
   }
   public getAll(AppNo:any) {
+    // this.serviceService.getLicenseService(AppNo).subscribe((response:any)=>{
+    //   console.log('sssssssss',response.procLicense_Services);
+    //   this.licenceData=response.procLicense_Services[0]
+      
+    // })
     // this.serviceService
     //   .GetApplicationNumberByUserInfo(AppNo)
     //   .subscribe((licenceService) => {

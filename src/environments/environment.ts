@@ -11,6 +11,7 @@ interface CustomWindow extends Window {
   _imagepath: string;
   phisicalPath: string;
   Logo: string;
+  formPath: string;
 }
 
 // Cast window to the extended interface
@@ -22,10 +23,11 @@ export const rootPath = customWindow.rootPath;
 export const rootpath3 = customWindow.rootpath3;
 export const rootpath2 = customWindow.rootpath2;
 export const _UserName = customWindow._UserName;
+export const formPath = customWindow.formPath;
 
 export const environment = {
   production: false,
-  _UserName: '0944444444',
+  _UserName: _UserName,
   phisicalPath: "./assets/i18n/",  
   imageUrl: Logo + "/photo_2021-12-28_11-36-08.jpg",
   imageUrl2: Logo + "/disaster.jpg",
@@ -40,6 +42,7 @@ export const environment = {
   rootPath: rootPath,
   rootpath3: rootpath3,
   rootpath2: rootpath2,
+  formPath: formPath,
   Lang: '10D04E8B-3361-E111-95D5-00E04C05559B',
 };
 

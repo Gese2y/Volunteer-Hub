@@ -11,9 +11,7 @@ export class ServiceServiceService {
   Service_ID: any;
   appnoForRecord: any;
   LicenceserviceID: any;
-  getFormData(formcode: any) {
-    throw new Error('Method not implemented.');
-  }
+ 
   disablefins: any;
   GetSuperviedUsers() {
     throw new Error('Method not implemented.');
@@ -31,6 +29,7 @@ private nextTaskCompleteURL = environment.rootpath3 + "BPEL/nextTaskComplete"; /
 private OrganizationRegistrationServices = environment.rootpath3 + "View_Topic_ERP"; // URL to web api
 private SaveDataURL = environment.rootpath3 + "BPEL/SaveData"; 
 private cust =environment.rootPath + "Customer/procCustomer";
+private License_Service =environment.rootPath + "License_Service/procLicense_Service/";
 private Backgroundstat =environment.rootPath + "Background_status/procBackground_status";
 private Lang =environment.rootPath + "Language_skill/procLanguage_skill";
 private Volunteership =environment.rootPath + "Volunteership/procVolunteership";
@@ -51,6 +50,9 @@ return this.http.get(this.OrganizationRegistrationServices)
   getBackgroundstat() {
     return this.http.get(this.Backgroundstat);
   }
+  getLicenseService(App_Number:any) {
+    return this.http.get(this.License_Service+App_Number);
+  }
   getAll(AppNo:any) {
     return this.http.get<any[]>(
       this.License_ServiceURL +
@@ -69,6 +71,13 @@ return this.http.get(this.OrganizationRegistrationServices)
     return this.http.put(this.cust,
       data
     );
+  }
+  getFormData(formcode:any) {
+    if (!environment.production) {
+      return this.http.get<any>(environment.formPath + formcode + ".json");
+    } else {
+      return this.http.get<any>(environment.formPath + formcode + ".json");
+    }
   }
   insertBackstat_data(data: any) {
     return this.http.post(this.Backgroundstat,
