@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ServiceServiceService } from '../service-service.service';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import * as Survey from 'survey-angular';
 @Component({
   selector: 'app-service',
   templateUrl: './service.component.html',
@@ -17,6 +17,7 @@ export class ServiceComponent {
   tskTyp: any;
   tskID: any;
   DocID: any;
+  
   todoID: any;
   plotRegistrationFields: any;
   ID: number | undefined;
@@ -30,6 +31,7 @@ export class ServiceComponent {
   licenceData: any;
   Licence_Service_ID: any;
   AppCode: any;
+  surveyData: any;
   constructor(
     // private modalService: BsModalService,
     private activatedRoute: ActivatedRoute,
@@ -48,7 +50,7 @@ export class ServiceComponent {
     //   this.serviceService
     //     .getdbstatus("00000000-0000-0000-0000-000000000000")
     //     .subscribe((response: any) => {
-    //       console.log("response", response);
+    //       console.log("response", response); 
     //       if (response == true) {
     //         this.okdb = true;
     //       } else {
@@ -154,8 +156,13 @@ export class ServiceComponent {
       this.tskTyp = params["tskTyp"];
       this.tskID = params["tskID"];
       this.serviceService.getFormData(this.formcode).subscribe(
-        (success:any) => (this.ID = 1),
-        (error:any) => (this.ID = 404)
+        (res:any)=>{
+          this.surveyData=res
+          const survey = new Survey.Model(this.surveyData);
+          Survey.SurveyNG.render('surveyElement', { model: survey });
+          console.log('teststststst',res);
+          
+        }
       );
       // if (this.serviceService.propertytaskslist != undefined) {
       //   let filterpropertyid = this.serviceService.propertytaskslist.filter(
